@@ -15,6 +15,8 @@
 		EA1522612285462D00CCECC6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA15225F2285462D00CCECC6 /* LaunchScreen.storyboard */; };
 		EA15226C2285462D00CCECC6 /* themoviedbTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA15226B2285462D00CCECC6 /* themoviedbTests.swift */; };
 		EA1522772285462D00CCECC6 /* themoviedbUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1522762285462D00CCECC6 /* themoviedbUITests.swift */; };
+		EA152287228546B100CCECC6 /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA152286228546B100CCECC6 /* BaseTabBarController.swift */; };
+		EA15228922854F0000CCECC6 /* PopulerMoviesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA15228822854F0000CCECC6 /* PopulerMoviesController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		EA1522722285462D00CCECC6 /* themoviedbUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = themoviedbUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA1522762285462D00CCECC6 /* themoviedbUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = themoviedbUITests.swift; sourceTree = "<group>"; };
 		EA1522782285462D00CCECC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA152286228546B100CCECC6 /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
+		EA15228822854F0000CCECC6 /* PopulerMoviesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopulerMoviesController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,13 +103,11 @@
 		EA1522522285462C00CCECC6 /* themoviedb */ = {
 			isa = PBXGroup;
 			children = (
-				EA1522532285462C00CCECC6 /* AppDelegate.swift */,
+				EA1522852285469500CCECC6 /* Controllers */,
+				EA1522842285467100CCECC6 /* SupportFiles */,
 				EA1522552285462C00CCECC6 /* ViewController.swift */,
 				EA1522572285462C00CCECC6 /* Main.storyboard */,
 				EA15225D2285462D00CCECC6 /* Assets.xcassets */,
-				EA15225F2285462D00CCECC6 /* LaunchScreen.storyboard */,
-				EA1522622285462D00CCECC6 /* Info.plist */,
-				EA15225A2285462C00CCECC6 /* themoviedb.xcdatamodeld */,
 			);
 			path = themoviedb;
 			sourceTree = "<group>";
@@ -126,6 +128,26 @@
 				EA1522782285462D00CCECC6 /* Info.plist */,
 			);
 			path = themoviedbUITests;
+			sourceTree = "<group>";
+		};
+		EA1522842285467100CCECC6 /* SupportFiles */ = {
+			isa = PBXGroup;
+			children = (
+				EA1522532285462C00CCECC6 /* AppDelegate.swift */,
+				EA1522622285462D00CCECC6 /* Info.plist */,
+				EA15225A2285462C00CCECC6 /* themoviedb.xcdatamodeld */,
+				EA15225F2285462D00CCECC6 /* LaunchScreen.storyboard */,
+			);
+			path = SupportFiles;
+			sourceTree = "<group>";
+		};
+		EA1522852285469500CCECC6 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				EA152286228546B100CCECC6 /* BaseTabBarController.swift */,
+				EA15228822854F0000CCECC6 /* PopulerMoviesController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,7 +281,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA152287228546B100CCECC6 /* BaseTabBarController.swift in Sources */,
 				EA15225C2285462C00CCECC6 /* themoviedb.xcdatamodeld in Sources */,
+				EA15228922854F0000CCECC6 /* PopulerMoviesController.swift in Sources */,
 				EA1522562285462C00CCECC6 /* ViewController.swift in Sources */,
 				EA1522542285462C00CCECC6 /* AppDelegate.swift in Sources */,
 			);
@@ -438,7 +462,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JES6KDUZ5B;
-				INFOPLIST_FILE = themoviedb/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/themoviedb/SupportFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -456,7 +480,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JES6KDUZ5B;
-				INFOPLIST_FILE = themoviedb/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/themoviedb/SupportFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
