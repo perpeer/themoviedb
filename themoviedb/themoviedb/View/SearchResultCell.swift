@@ -43,7 +43,7 @@ class SearchResultCell: UICollectionViewCell {
   // MARK: - Override functions
   override init(frame: CGRect) {
     super.init(frame: frame)
-    backgroundColor = UIColor.rgb(red: 27, green: 27, blue: 27, alpha: 0.7)
+    backgroundColor = UIColor.rgb(red: 29, green: 29, blue: 29)
     setupViews()
   }
   
