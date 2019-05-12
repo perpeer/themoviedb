@@ -84,7 +84,7 @@ class MovieSearchController: UICollectionViewController, UICollectionViewDelegat
     cell.voteAverageLabel.text = "Rating: \(movieResult[indexPath.item].voteAverage)"
     cell.dateLabel.text = "Date: \(movieResult[indexPath.item].date ?? "")"
     
-    let imageUrl = getImageUrl(path: movieResult[indexPath.item].poster ?? "")
+    let imageUrl = Service.getImageUrl(path: movieResult[indexPath.item].poster ?? "")
     cell.posterImage.sd_setImage(with: URL(string: imageUrl))
     
     return cell

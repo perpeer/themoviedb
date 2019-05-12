@@ -70,7 +70,7 @@ class MovieDetailsController: UIViewController {
     navigationController?.navigationBar.topItem?.title = "Back"
     setupViews()
     
-    let imageUrl = getImageUrl(path: movieResult.backdrop ?? "")
+    let imageUrl = Service.getImageUrl(path: movieResult.backdrop ?? "")
     backdropImageView.sd_setImage(with: URL(string: imageUrl))
     headerLabel.text = "  " + movieResult.name
     voteCount.text = "\(movieResult.voteCount)"

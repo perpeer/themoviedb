@@ -58,3 +58,10 @@ class Service {
       }.resume()
   }
 }
+
+extension Service {
+  // Send image url with path
+  static func getImageUrl(path: String) -> String {
+    return "https://image.tmdb.org/t/p/w400\(path)"
+  }
+}

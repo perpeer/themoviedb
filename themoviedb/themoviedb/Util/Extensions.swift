@@ -8,10 +8,6 @@
 
 import UIKit
 
-func getImageUrl(path: String) -> String {
-  return "https://image.tmdb.org/t/p/w400\(path)"
-}
-
 extension UIColor {
   static func rgb(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat = 1) -> UIColor {
     return UIColor(red: red/255, green: green/255, blue: blue/255, alpha: alpha)

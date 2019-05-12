@@ -78,9 +78,9 @@ class PopularMovieController: UICollectionViewController, UICollectionViewDelega
     cell.nameLabel.text = "  " + movieResult[indexPath.item].name
     
     // switch display mode
-    var imageUrl = getImageUrl(path: movieResult[indexPath.item].backdrop ?? "")
+    var imageUrl = Service.getImageUrl(path: movieResult[indexPath.item].backdrop ?? "")
     if isMultiColumn {
-      imageUrl = getImageUrl(path: movieResult[indexPath.item].poster ?? "")
+      imageUrl = Service.getImageUrl(path: movieResult[indexPath.item].poster ?? "")
     }
     cell.posterImage.sd_setImage(with: URL(string: imageUrl))
     
