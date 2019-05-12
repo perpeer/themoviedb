@@ -21,7 +21,6 @@ class SearchResultCell: UICollectionViewCell {
   
   let nameLabel: UILabel = {
     let lbl = UILabel()
-    lbl.text = "Name"
     lbl.textColor = .white
     lbl.font = UIFont.boldSystemFont(ofSize: 26)
     return lbl
@@ -29,7 +28,6 @@ class SearchResultCell: UICollectionViewCell {
   
   let voteAverageLabel: UILabel = {
     let lbl = UILabel()
-    lbl.text = "8.5"
     lbl.textColor = .white
     lbl.font = UIFont.systemFont(ofSize: 18)
     return lbl
@@ -38,7 +36,6 @@ class SearchResultCell: UICollectionViewCell {
   let dateLabel: UILabel = {
     let lbl = UILabel()
     lbl.textColor = .white
-    lbl.text = "2019"
     lbl.font = UIFont.systemFont(ofSize: 18)
     return lbl
   }()

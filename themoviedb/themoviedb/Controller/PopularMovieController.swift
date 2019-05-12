@@ -29,17 +29,25 @@ class PopularMovieController: UICollectionViewController, UICollectionViewDelega
   // MARK: — Override functions
   override func viewDidLoad() {
     super.viewDidLoad()
-    collectionView.backgroundColor = .white
-    collectionView.register(PopularMovieCell.self, forCellWithReuseIdentifier: cellId)
-    collectionView.register(PopularMovieFooterCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: footerId)
-    
+    configureViews()
     setupNavigation()
     fetchMovies(page: pageId)
   }
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(true)
+    // Set navigation title
     navigationController?.navigationBar.topItem?.title = "Popular Movies"
+  }
+  
+  // MARK: - Configure views
+  fileprivate func configureViews() {
+    // Set background color
+    collectionView.backgroundColor = .white
+    
+    // Register cells
+    collectionView.register(PopularMovieCell.self, forCellWithReuseIdentifier: cellId)
+    collectionView.register(PopularMovieFooterCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: footerId)
   }
   
   // MARK: — Data fetch

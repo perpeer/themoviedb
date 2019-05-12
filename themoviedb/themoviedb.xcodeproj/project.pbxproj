@@ -28,6 +28,7 @@
 		EA2391D422872013004A3D7D /* MovieDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2391D322872013004A3D7D /* MovieDetailsController.swift */; };
 		EA66591722880883000ADC02 /* MovieSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA66591622880883000ADC02 /* MovieSearchController.swift */; };
 		EA66591922880CFD000ADC02 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA66591822880CFD000ADC02 /* SearchResultCell.swift */; };
+		EA66591B22883074000ADC02 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA66591A22883074000ADC02 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,7 @@
 		EA2391D322872013004A3D7D /* MovieDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsController.swift; sourceTree = "<group>"; };
 		EA66591622880883000ADC02 /* MovieSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchController.swift; sourceTree = "<group>"; };
 		EA66591822880CFD000ADC02 /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
+		EA66591A22883074000ADC02 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				EA2391C92286B4ED004A3D7D /* Extensions.swift */,
+				EA66591A22883074000ADC02 /* Constants.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -483,6 +486,7 @@
 				EA2391D02286D4D0004A3D7D /* PopularMovieResult.swift in Sources */,
 				EA1522562285462C00CCECC6 /* ViewController.swift in Sources */,
 				EA2391D222870216004A3D7D /* PopularMovieFooterCell.swift in Sources */,
+				EA66591B22883074000ADC02 /* Constants.swift in Sources */,
 				EA1522542285462C00CCECC6 /* AppDelegate.swift in Sources */,
 				EA2391CA2286B4ED004A3D7D /* Extensions.swift in Sources */,
 			);

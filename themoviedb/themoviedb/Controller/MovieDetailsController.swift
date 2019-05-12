@@ -64,12 +64,12 @@ class MovieDetailsController: UIViewController {
   // MARK: — Override functions
   override func viewDidLoad() {
     super.viewDidLoad()
-    view.backgroundColor = .white
-    
-    // Change back button title
-    navigationController?.navigationBar.topItem?.title = "Back"
     setupViews()
-    
+    setViewProperties()
+  }
+  
+  // MARK - Set views properties
+  fileprivate func setViewProperties() {
     let imageUrl = Service.getImageUrl(path: movieResult.backdrop ?? "")
     backdropImageView.sd_setImage(with: URL(string: imageUrl))
     headerLabel.text = "  " + movieResult.name
@@ -81,6 +81,12 @@ class MovieDetailsController: UIViewController {
   
   // MARK: - Add views to subview
   fileprivate func setupViews() {
+    // Set background color
+    view.backgroundColor = .white
+
+    // Change back button title
+    navigationController?.navigationBar.topItem?.title = "Back"
+    
     view.addSubview(backdropImageView)
     backdropImageView.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 250)
     

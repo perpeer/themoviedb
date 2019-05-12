@@ -13,7 +13,7 @@ class Service {
   static let shared = Service()
   
   func fetchMovieDetail(page: Int, completion: @escaping (PopularMovieResult?, Error?) -> ()) {
-    let urlString = "https://api.themoviedb.org/3/movie/popular?language=en-US&api_key=fd2b04342048fa2d5f728561866ad52a&page=\(page)"
+    let urlString = "\(Const.link)/movie/popular?language=en-US&api_key=\(Const.apiKey)&page=\(page)"
     guard let url = URL(string: urlString) else { return }
     
     URLSession.shared.dataTask(with: url) { (data, resp, err) in
@@ -36,7 +36,7 @@ class Service {
   }
   
   func searchMovie(searchTerm: String, page: Int, completion: @escaping (PopularMovieResult?, Error?) -> ()) {
-    let urlString = "https://api.themoviedb.org/3/search/movie?api_key=fd2b04342048fa2d5f728561866ad52a&query=\(searchTerm)&page=\(page)"
+    let urlString = "\(Const.link)/search/movie?api_key=\(Const.apiKey)&query=\(searchTerm)&page=\(page)"
     guard let url = URL(string: urlString) else { return }
     
     URLSession.shared.dataTask(with: url) { (data, resp, err) in
