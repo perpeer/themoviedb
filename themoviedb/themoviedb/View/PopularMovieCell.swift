@@ -41,11 +41,15 @@ class PopularMovieCell: UICollectionViewCell {
   // MARK: — Override functions
   override init(frame: CGRect) {
     super.init(frame: frame)
-
     setupViews()
   }
   
+  // MARK: - Add views to subview
   fileprivate func setupViews() {
+    // Cell cornerradius
+    layer.cornerRadius = 10
+    clipsToBounds = true
+    
     addSubview(posterImage)
     posterImage.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
     

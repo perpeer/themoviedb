@@ -1,23 +1,23 @@
 //
-//  PopularMoviesController.swift
+//  MovieSearchController.swift
 //  themoviedb
 //
-//  Created by Ekrem TAŞKIRAN on 10.05.2019.
+//  Created by Ekrem TAŞKIRAN on 12.05.2019.
 //  Copyright © 2019 Ekrem TAŞKIRAN. All rights reserved.
 //
 
 import UIKit
-import SDWebImage
 
-class PopularMovieController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-
+class MovieSearchController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
+  
   // MARK: - Local variables
   fileprivate let cellId = "cellId"
   fileprivate let footerId = "footerId"
-  fileprivate var isMultiColumn = false
+  fileprivate let searchController = UISearchController(searchResultsController: nil)
   fileprivate var pageId = 1
+  fileprivate var searchTerm = ""
   fileprivate var lastPage = 1
-  
+
   var movieResult: [MovieResult] = [] {
     didSet {
       DispatchQueue.main.async {
@@ -29,24 +29,23 @@ class PopularMovieController: UICollectionViewController, UICollectionViewDelega
   // MARK: — Override functions
   override func viewDidLoad() {
     super.viewDidLoad()
-    collectionView.backgroundColor = .white
-    collectionView.register(PopularMovieCell.self, forCellWithReuseIdentifier: cellId)
-    collectionView.register(PopularMovieFooterCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: footerId)
     
-    setupNavigation()
-    fetchMovies(page: pageId)
+    collectionView.backgroundColor = .white
+    collectionView.register(SearchResultCell.self, forCellWithReuseIdentifier: cellId)
+    collectionView.register(PopularMovieFooterCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: footerId)
+    setupSearchBar()
   }
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(true)
-    navigationController?.navigationBar.topItem?.title = "Popular Movies"
+    navigationController?.navigationBar.topItem?.title = "Search"
   }
   
   // MARK: — Data fetch
-  fileprivate func fetchMovies(page: Int) {
-    Service.shared.fetchMovieDetail(page: page) { (res, err) in
+  fileprivate func searchMovies(searchTerm: String, page: Int) {
+    Service.shared.searchMovie(searchTerm: searchTerm, page: page) { (res, err) in
       if let err = err {
-        print("Popular movies fetch failed...", err)
+        print("Search movies fetch failed...", err)
       }
       
       if let res = res {
@@ -57,31 +56,35 @@ class PopularMovieController: UICollectionViewController, UICollectionViewDelega
     }
   }
   
-  // MARK: — Navigation controller functions
-  fileprivate func setupNavigation() {
-    navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "mode"), style: .done, target: self, action: #selector(handleDisplayModeBarButtonItem))
+  // MARK: - Search
+  fileprivate func setupSearchBar() {
+    definesPresentationContext = true
+    navigationItem.searchController = self.searchController
+    navigationItem.hidesSearchBarWhenScrolling = false
+    searchController.dimsBackgroundDuringPresentation = false
+    searchController.searchBar.delegate = self
   }
   
-  @objc fileprivate func handleDisplayModeBarButtonItem() {
-    // switch display mode
-    isMultiColumn = isMultiColumn ? false : true
-    collectionView.reloadData()
+  func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    let searchTextModify = searchText.replacingOccurrences(of: " ", with: "+")
+    searchTerm = searchTextModify
+    pageId = 1
+    movieResult.removeAll()
+    searchMovies(searchTerm: searchTextModify, page: pageId)
   }
-
+  
   // MARK: - CollectionViewCell
   override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return movieResult.count
   }
   
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! PopularMovieCell
-    cell.nameLabel.text = "  " + movieResult[indexPath.item].name
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! SearchResultCell
+    cell.nameLabel.text = movieResult[indexPath.item].name
+    cell.voteAverageLabel.text = "Rating: \(movieResult[indexPath.item].voteAverage)"
+    cell.dateLabel.text = "Date: \(movieResult[indexPath.item].date ?? "")"
     
-    // switch display mode
-    var imageUrl = getImageUrl(path: movieResult[indexPath.item].backdrop ?? "")
-    if isMultiColumn {
-      imageUrl = getImageUrl(path: movieResult[indexPath.item].poster ?? "")
-    }
+    let imageUrl = getImageUrl(path: movieResult[indexPath.item].poster ?? "")
     cell.posterImage.sd_setImage(with: URL(string: imageUrl))
     
     return cell
@@ -94,27 +97,7 @@ class PopularMovieController: UICollectionViewController, UICollectionViewDelega
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    var width = view.frame.width - 8
-    var height: CGFloat = 250
-    
-    // switch display mode
-    if isMultiColumn {
-      width = (view.frame.width / 2) - 8
-      height = height * 1.22
-    }
-    return CGSize(width: width, height: height)
-  }
-  
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-    return UIEdgeInsets(top: 10, left: 4, bottom: 0, right: 4)
-  }
-  
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-    return 0
-  }
-  
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-    return 8
+    return CGSize(width: view.frame.width, height: 200)
   }
   
   // MARK: - CollectionViewFooter
@@ -136,12 +119,13 @@ class PopularMovieController: UICollectionViewController, UICollectionViewDelega
   
   @objc fileprivate func handleLoadMoreButtom() {
     // fetch next page
-    fetchMovies(page: pageId + 1)
+    searchMovies(searchTerm: searchTerm, page: pageId + 1)
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
     return CGSize(width: view.frame.width, height: 65)
   }
+  
   
   // MARK: - Default initializer
   init() {

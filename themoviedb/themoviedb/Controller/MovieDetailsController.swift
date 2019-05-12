@@ -37,6 +37,19 @@ class MovieDetailsController: UIViewController {
     return tv
   }()
   
+  let voteCount: UILabel = {
+    let lbl = UILabel()
+    lbl.textColor = .white
+    lbl.font = UIFont.boldSystemFont(ofSize: 20)
+    lbl.textAlignment = .center
+    lbl.backgroundColor = UIColor.rgb(red: 155, green: 89, blue: 182, alpha: 0.7)
+    lbl.layer.cornerRadius = 5
+    lbl.adjustsFontSizeToFitWidth = true
+    lbl.minimumScaleFactor = 0.7
+    lbl.clipsToBounds = true
+    return lbl
+  }()
+  
   let voteAverage: UILabel = {
     let lbl = UILabel()
     lbl.textColor = .white
@@ -48,23 +61,31 @@ class MovieDetailsController: UIViewController {
     return lbl
   }()
   
+  // MARK: — Override functions
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .white
     
+    // Change back button title
+    navigationController?.navigationBar.topItem?.title = "Back"
     setupViews()
     
     let imageUrl = getImageUrl(path: movieResult.backdrop ?? "")
     backdropImageView.sd_setImage(with: URL(string: imageUrl))
     headerLabel.text = "  " + movieResult.name
+    voteCount.text = "\(movieResult.voteCount)"
     voteAverage.text = "\(movieResult.voteAverage)"
     descriptionTextField.text = movieResult.description
     navigationItem.title = movieResult.name
   }
   
+  // MARK: - Add views to subview
   fileprivate func setupViews() {
     view.addSubview(backdropImageView)
     backdropImageView.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 250)
+    
+    view.addSubview(voteCount)
+    voteCount.anchor(top: backdropImageView.topAnchor, left: nil, bottom: nil, right: backdropImageView.rightAnchor, paddingTop: 12, paddingLeft: 0, paddingBottom: 0, paddingRight: 12, width: 100, height: 30)
     
     view.addSubview(voteAverage)
     voteAverage.anchor(top: nil, left: nil, bottom: backdropImageView.bottomAnchor, right: backdropImageView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 12, paddingRight: 12, width: 50, height: 50)

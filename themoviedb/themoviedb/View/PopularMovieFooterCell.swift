@@ -23,13 +23,19 @@ class PopularMovieFooterCell: UICollectionViewCell {
     return btn
   }()
   
+  // MARK: — Override functions
   override init(frame: CGRect) {
     super.init(frame: frame)
-    
+    setupViews()
+  }
+  
+  // MARK: - Add views to subview
+  fileprivate func setupViews() {
     addSubview(loadMoreButton)
     loadMoreButton.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 8, paddingRight: 8, width: 0, height: 0)
   }
   
+  // MARK: - Default initializer
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }

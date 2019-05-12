@@ -23,17 +23,19 @@ struct PopularMovieResult: Decodable {
 struct MovieResult: Decodable {
   let name: String
   let description: String
-  let vote: Int
+  let voteCount: Int
   let voteAverage: Double
-  let poster: String
+  let poster: String?
   let backdrop: String?
+  let date: String?
   
   enum CodingKeys: String, CodingKey {
     case name = "title"
     case description = "overview"
-    case vote = "vote_count"
+    case voteCount = "vote_count"
     case voteAverage = "vote_average"
     case poster = "poster_path"
     case backdrop = "backdrop_path"
+    case date = "release_date"
   }
 }
