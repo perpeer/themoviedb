@@ -9,7 +9,6 @@
 import UIKit
 
 class BaseTabBarController: UITabBarController {
-
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -17,7 +16,7 @@ class BaseTabBarController: UITabBarController {
     view.backgroundColor = .white
     
     viewControllers = [
-      createNavController(viewController: PopuperMoviesController(), title: "Populer Movies", imageName: "movies"),
+      createNavController(viewController: PopuperMovieController(), title: "Popular Movies", imageName: "movies"),
       createNavController(viewController: UIViewController(), title: "Search", imageName: "search")
     ]
   }
