@@ -67,12 +67,19 @@ class PopularMovieController: UICollectionViewController, UICollectionViewDelega
   
   // MARK: — Navigation controller functions
   fileprivate func setupNavigation() {
-    navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "mode"), style: .done, target: self, action: #selector(handleDisplayModeBarButtonItem))
+    navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "grid-mode"), style: .done, target: self, action: #selector(handleDisplayModeBarButtonItem))
   }
   
   @objc fileprivate func handleDisplayModeBarButtonItem() {
     // switch display mode
-    isMultiColumn = isMultiColumn ? false : true
+    // isMultiColumn = isMultiColumn ? false : true
+    if isMultiColumn {
+      isMultiColumn = false
+      navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "grid-mode"), style: .done, target: self, action: #selector(handleDisplayModeBarButtonItem))
+    } else {
+      isMultiColumn = true
+      navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "list-mode"), style: .done, target: self, action: #selector(handleDisplayModeBarButtonItem))
+    }
     collectionView.reloadData()
   }
 

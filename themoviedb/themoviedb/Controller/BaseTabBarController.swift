@@ -14,7 +14,7 @@ class BaseTabBarController: UITabBarController {
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .white
-    
+    tabBarController?.tabBar.isTranslucent = false
     viewControllers = [
       createNavController(viewController: PopularMovieController(), title: "Popular Movies", imageName: "movies"),
       createNavController(viewController: MovieSearchController(), title: "Search", imageName: "search")

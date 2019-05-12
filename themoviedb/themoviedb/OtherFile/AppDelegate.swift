@@ -17,8 +17,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
     
-    // route window to BaseTabBarController
+    // Route window to BaseTabBarController
     window?.rootViewController = BaseTabBarController()
+    
+    // Tabbar configuration
+    UITabBar.appearance().tintColor = UIColor.white
+    UITabBar.appearance().backgroundColor = UIColor.rgb(red: 18, green: 18, blue: 18)
+    UITabBar.appearance().shadowImage = UIImage()
+    UITabBar.appearance().backgroundImage = UIImage()
     
     return true
   }
