@@ -11,14 +11,14 @@ App uses *[SDWebImage](https://github.com/SDWebImage/SDWebImage)* library for do
 
 ## Api Links
 **Api Link:** [https://developers.themoviedb.org/3](https://developers.themoviedb.org/3)
+
 Search Query;
-
 https://api.themoviedb.org/3/search/movie?api_key={api_key}&query=Jack+Reacher
+
 Popular Movie;
-
 https://api.themoviedb.org/3/movie/popular?language=en-US&api_key={api_key}&page=1
-Movie Details;
 
+Movie Details;
 https://api.themoviedb.org/3/movie/287947?language=en-US&api_key={api_key}
 
 [main-screen]: https://github.com/perpeer/themoviedb/blob/master/images/MainScreen.png?raw=true
